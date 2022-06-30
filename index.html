@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" ng-app="listaTelefonica">
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="./angular.js"></script>
@@ -10,14 +10,16 @@
 
     <script>
 
-        var app = angular.module("listaTelefonica", [])
-        app.controller("listaTelefonicaCtrl", function ($scope) {
-
+        angular.module("listaTelefonica", [])
+        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
+            $scope.app = "Lista Telefonica"
         })
     </script>
 
 </head>
-<body no-controller=""listaTelefonica>
-    d
+<body ng-controller="listaTelefonicaCtrl">
+    <div>
+        <h4 ng-bind="app"></h4>
+    </div>
 </body>
 </html>
