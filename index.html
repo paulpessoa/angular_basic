@@ -1,25 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt-br" ng-app="listaTelefonica">
+<html ng-app="listaTelefonica">
 <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="./angular.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista Telefônica</title>
 
-    <script>
 
+
+    <style>
+        .jumbotron {
+            width: 400px;
+            text-align: center;
+            margin: 20px auto;
+        }
+        .table {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
         angular.module("listaTelefonica", [])
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
-            $scope.app = "Lista Telefonica"
+            $scope.app ="Lista Telefonica"
+            $scope.contatos= [
+                {nome: "Pedro", telefone: "8199559765"},
+                {nome: "Ana", telefone: "8199550000"},
+                {nome: "Joao", telefone: "8199559764"},
+                {nome: "Renata", telefone: "8199577777"}
+            ]
         })
     </script>
 
+
+
 </head>
 <body ng-controller="listaTelefonicaCtrl">
-    <div>
+    <div class="jumbotron">
         <h4 ng-bind="app"></h4>
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+            </tr>
+            <tr ng-repeat="contato in contatos">
+        <!--    <td> {{contato.nome}}</td> --> 
+                <td ng-bind="contato.nome"></td>
+                <td ng-bind="contato.telefone"></td>
+            </tr>
+        <!--
+            <tr ng-repeat="contato in contatos">
+                <td ng-repeat="(key, value) in contato">
+                    {{value}}
+                </td>
+                <td ></td>
+            </tr>
+        --> 
+        </table>
     </div>
 </body>
 </html>
