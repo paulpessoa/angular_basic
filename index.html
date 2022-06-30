@@ -19,6 +19,9 @@
         .table {
             margin-top: 20px;
         }
+        .form-control {
+            margin-bottom: 4px;
+        }
     </style>
     <script>
         angular.module("listaTelefonica", [])
@@ -58,6 +61,11 @@
             </tr>
         --> 
         </table>
+        <hr/>
+        <input class="form-control" type="text" ng-model="nome">
+        <input class="form-control" type="text" ng-model="telefone">
+        {{nome}}
+        {{telefone}}
     </div>
 </body>
 </html>
