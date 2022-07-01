@@ -137,7 +137,7 @@
 
             <form action="" name="contatoForm">
                 <input class="form-control" name="nome" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true" ng-minlength="5"/>
-                <input class="form-control" name="telefone" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true" ng-maxlength="11"/>
+                <input class="form-control" name="telefone" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true" ng-maxlength="11" ng-pattern="/^\d{4,5}-\d{4}$/"/>
                 <select class="form-control" ng-model="contato.operadora"
                     ng-options="operadora.nome group by operadora.categoria for operadora in operadoras" ng-required="true">
                     <option value="">- Selecione uma operadora -</option>
@@ -157,6 +157,9 @@
             </div>
             <div ng-show="contatoForm.telefone.$error.maxlength" class="alert alert-danger">
                 O campo telefone deve ter no máximo 11 caracteres.
+            </div>
+            <div ng-show="contatoForm.telefone.$error.pattern" class="alert alert-danger">
+                O campo telefone deve ter o formato 0000-0000
             </div>
             <button class="btn btn-primary btn-block" ng-disabled="contatoForm.$invalid"
                 ng-click="adicionarContato(contato)">
