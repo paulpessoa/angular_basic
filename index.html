@@ -80,6 +80,7 @@
               //    telefone: $scope.telefone,
             );
             delete $scope.contato;
+            $scope.contatoForm.$setPristine()
           };
           $scope.classe1 = "selecionado";
           $scope.classe2 = "negrito";
@@ -136,8 +137,8 @@
         é invalido: {{contatoForm.$invalid}}
 
             <form action="" name="contatoForm">
-                <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true"/>
-                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true"/>
+                <input class="form-control" name="nome" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true"/>
+                <input class="form-control" name="telefone" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true"/>
                 <select class="form-control" ng-model="contato.operadora"
                     ng-options="operadora.nome group by operadora.categoria for operadora in operadoras" ng-required="true">
                     <option value="">- Selecione uma operadora -</option>
@@ -146,8 +147,11 @@
                     <option value="">- Selecione uma cor -</option>
                 </select>
             </form>
-            <div class="alert alert-danger">
-                Selecione ou preencha os campos vazios.
+            <div ng-show="contatoForm.nome.$invalid && contatoForm.nome.$dirty" class="alert alert-danger">
+                Preencha o campo nome.
+            </div>
+            <div ng-show="contatoForm.telefone.$invalid && contatoForm.telefone.$dirty" class="alert alert-danger">
+                Preencha o campo telefone.
             </div>
             <button class="btn btn-primary btn-block" ng-disabled="contatoForm.$invalid"
                 ng-click="adicionarContato(contato)">
