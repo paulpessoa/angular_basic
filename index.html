@@ -12,7 +12,7 @@
 
     <style>
         .jumbotron {
-            width: 400px;
+            width: 450px;
             text-align: center;
             margin: 20px auto;
         }
@@ -35,15 +35,21 @@
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
             $scope.app ="Lista Telefonica"
             $scope.contatos= [
-                {nome: "Pedro", telefone: "8199559765"},
-                {nome: "Ana", telefone: "8199550000"},
-                {nome: "Joao", telefone: "8199559764"}
+               {nome: "Pedro", telefone: "8199559765", cor: "Blue"},
+               {nome: "Ana", telefone: "8199550000", cor: "purple"},
+               {nome: "Joao", telefone: "8199559764", cor: "green"}
             ]
             $scope.operadoras = [
                 {nome: "Oi", codigo: 14, categoria: "Celular"},
                 {nome: "Vivo", codigo: 15, categoria: "Celular"},
                 {nome: "Tim", codigo: 16, categoria: "Fixo"},
                 {nome: "Claro", codigo: 17, categoria: "Fixo"},
+            ]
+            $scope.cores = [
+                {nome: "Azul", valor: "blue"},
+                {nome: "Verde", valor: "green"},
+                {nome: "Vermelho", valor: "red"},
+                {nome: "Amarelo", valor: "yellow"}
             ]
             $scope.adicionarContato = function (contato) {
                 $scope.contatos.push(
@@ -81,6 +87,7 @@
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Operadora</th>
+                <th>Status</th>
             </tr>
             <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos">
         <!--    <tr ng-class="[classe1, classe2]" ng-repeat="contato in contatos">
@@ -89,6 +96,7 @@
                 <td ng-bind="contato.nome"></td>
                 <td ng-bind="contato.telefone"></td>
                 <td ng-bind="contato.operadora.nome"></td>
+                <td><div style="width: 16px!important; height: 16px; border-radius: 25px;" ng-style="{'background': contato.cor}"></div></td>
             </tr>
         <!--
             <tr ng-repeat="contato in contatos">
@@ -106,6 +114,9 @@
 
         <select class="form-control"  ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
             <option value="">- Selecione uma operadora -</option>
+        </select>
+        <select class="form-control"  ng-model="contato.cor" ng-options="cor.valor as cor.nome for cor in cores">
+            <option value="">- Selecione uma cor -</option>
         </select>
 
         <button class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone"  ng-click="adicionarContato(contato)">Acidionar contato</button>
