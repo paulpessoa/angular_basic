@@ -22,6 +22,13 @@
         .form-control {
             margin-bottom: 10px;
         }
+
+        .selecionado {
+            background-color: yellow;
+        }
+        .negrito {
+            font-weight: bold;
+        }
     </style>
     <script>
         angular.module("listaTelefonica", [])
@@ -47,6 +54,8 @@
                 )
                 delete $scope.contato
             }
+            $scope.classe1 = "selecionado"
+            $scope.classe2 = "negrito"
         })
     </script>
 
@@ -54,14 +63,18 @@
 <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
         <h4 ng-bind="app"></h4>
+        {{contatos}}
         <table class="table table-striped">
             <tr>
+                <th></th>
                 <th>Nome</th>
                 <th>Telefone</th>
                 <th>Operadora</th>
             </tr>
-            <tr ng-repeat="contato in contatos">
-        <!--    <td> {{contato.nome}}</td> --> 
+            <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos">
+        <!--    <tr ng-class="[classe1, classe2]" ng-repeat="contato in contatos">
+            <td> {{contato.nome}}</td> --> 
+                <td><input type="checkbox" ng-model="contato.selecionado"></td>
                 <td ng-bind="contato.nome"></td>
                 <td ng-bind="contato.telefone"></td>
                 <td ng-bind="contato.operadora.nome"></td>
