@@ -35,9 +35,9 @@
         angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
             $scope.app ="Lista Telefonica"
             $scope.contatos= [
-               {nome: "Pedro", telefone: "8199559765", cor: "Blue"},
-               {nome: "Ana", telefone: "8199550000", cor: "purple"},
-               {nome: "Joao", telefone: "8199559764", cor: "green"}
+               {nome: "Pedro", telefone: "8199559765", operadora:{nome:"Oi"}, cor: "Blue"},
+               {nome: "Ana", telefone: "8199550000", operadora:{nome:"Claro"}, cor: "purple"},
+               {nome: "Joao", telefone: "8199559764", operadora:{nome:"Vivo"}, cor: "green"}
             ]
             $scope.operadoras = [
                 {nome: "Oi", codigo: 14, categoria: "Celular"},
@@ -81,7 +81,7 @@
 <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
         <h4 ng-bind="app"></h4>
-        <table class="table table-striped">
+        <table ng-show="contatos.length > 0" class="table table-striped">
             <tr>
                 <th></th>
                 <th>Nome</th>
@@ -121,7 +121,7 @@
 
         <button class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone"  ng-click="adicionarContato(contato)">Acidionar contato</button>
 
-        <button class="btn btn-danger btn-block" ng-disabled="!isContatoSelecionado(contatos)" ng-click="apagarContato(contatos)" >Apagar contato</button>
+        <button class="btn btn-danger btn-block" ng-if="isContatoSelecionado(contatos)" ng-click="apagarContato(contatos)" >Apagar contato</button>
     </div>
 </body>
 </html>
