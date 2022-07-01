@@ -1,5 +1,8 @@
 # Simple Angular Phone List
 
+<a href="https://paulpessoa.github.io/angular_basic/" target="_blank"><img src="./chrome-capture-2022-6-1.gif" alt="List Page Preview"/></a>
+<a href="https://paulpessoa.github.io/angular_basic/" target="_blank"><img src="./list_print.PNG" alt="List Page Preview"/></a>
+
 ## Diretivas AngularJs:
 
 - [x] ngApp
