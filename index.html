@@ -1,127 +1,164 @@
-<!DOCTYPE html>
-<html ng-app="listaTelefonica">
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="./angular.js"></script>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Telefônica</title>
 
+    <!DOCTYPE html>
+    <html ng-app="listaTelefonica">
 
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous" />
+        <script src="./angular.js"></script>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Lista Telefônica</title>
 
-    <style>
-        .jumbotron {
-            width: 450px;
-            text-align: center;
-            margin: 20px auto;
-        }
-        .table {
-            margin-top: 20px;
-        }
-        .form-control {
-            margin-bottom: 10px;
-        }
-
-        .selecionado {
-            background-color: yellow!important;
-        }
-        .negrito {
-            font-weight: bold;
-        }
-    </style>
-    <script>
-        angular.module("listaTelefonica", [])
-        angular.module("listaTelefonica").controller("listaTelefonicaCtrl", function ($scope) {
-            $scope.app ="Lista Telefonica"
-            $scope.contatos= [
-               {nome: "Pedro", telefone: "8199559765", operadora:{nome:"Oi"}, cor: "Blue"},
-               {nome: "Ana", telefone: "8199550000", operadora:{nome:"Claro"}, cor: "purple"},
-               {nome: "Joao", telefone: "8199559764", operadora:{nome:"Vivo"}, cor: "green"}
-            ]
-            $scope.operadoras = [
-                {nome: "Oi", codigo: 14, categoria: "Celular"},
-                {nome: "Vivo", codigo: 15, categoria: "Celular"},
-                {nome: "Tim", codigo: 16, categoria: "Fixo"},
-                {nome: "Claro", codigo: 17, categoria: "Fixo"},
-            ]
-            $scope.cores = [
-                {nome: "Azul", valor: "blue"},
-                {nome: "Verde", valor: "green"},
-                {nome: "Vermelho", valor: "red"},
-                {nome: "Amarelo", valor: "yellow"}
-            ]
-            $scope.adicionarContato = function (contato) {
-                $scope.contatos.push(
-                    angular.copy(contato)
-                //    nome: $scope.nome,
-                //    telefone: $scope.telefone,
-                )
-                delete $scope.contato
+        <style>
+            .jumbotron {
+                width: 450px;
+                text-align: center;
+                margin: 20px auto;
             }
-            $scope.classe1 = "selecionado"
-            $scope.classe2 = "negrito"
-            $scope.apagarContato = function (contatos) {
-              
-            $scope.contatos = contatos.filter(function(contato) {
-                if (!contato.selecionado) return contato
-            })            
-            }
-            $scope.isContatoSelecionado = function(contatos) {
-                return contatos.some(function(contato) {
-                    return contato.selecionado
-                })
-                console.log(isContatoSelecionado)
-            }
-        })
 
-    </script>
+            .table {
+                margin-top: 20px;
+            }
 
-</head>
-<body ng-controller="listaTelefonicaCtrl">
-    <div class="jumbotron">
-        <h4 ng-bind="app"></h4>
-        <table ng-show="contatos.length > 0" class="table table-striped">
-            <tr>
-                <th></th>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Operadora</th>
-                <th>Status</th>
-            </tr>
-            <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos">
-        <!--    <tr ng-class="[classe1, classe2]" ng-repeat="contato in contatos">
-            <td> {{contato.nome}}</td> --> 
-                <td><input type="checkbox" ng-model="contato.selecionado"></td>
-                <td ng-bind="contato.nome"></td>
-                <td ng-bind="contato.telefone"></td>
-                <td ng-bind="contato.operadora.nome"></td>
-                <td><div style="width: 16px!important; height: 16px; border-radius: 25px;" ng-style="{'background': contato.cor}"></div></td>
-            </tr>
-        <!--
+            .form-control {
+                margin-bottom: 10px;
+            }
+
+            .selecionado {
+                background-color: yellow !important;
+            }
+
+            .negrito {
+                font-weight: bold;
+            }
+        </style>
+        <script>
+            angular.module("listaTelefonica", []);
+      angular
+        .module("listaTelefonica")
+        .controller("listaTelefonicaCtrl", function ($scope) {
+          $scope.app = "Lista Telefonica";
+          $scope.contatos = [
+            {
+              nome: "Pedro",
+              telefone: "8199559765",
+              operadora: { nome: "Oi" },
+              cor: "Blue",
+            },
+            {
+              nome: "Ana",
+              telefone: "8199550000",
+              operadora: { nome: "Claro" },
+              cor: "purple",
+            },
+            {
+              nome: "Joao",
+              telefone: "8199559764",
+              operadora: { nome: "Vivo" },
+              cor: "green",
+            },
+          ];
+          $scope.operadoras = [
+            { nome: "Oi", codigo: 14, categoria: "Celular" },
+            { nome: "Vivo", codigo: 15, categoria: "Celular" },
+            { nome: "Tim", codigo: 16, categoria: "Fixo" },
+            { nome: "Claro", codigo: 17, categoria: "Fixo" },
+          ];
+          $scope.cores = [
+            { nome: "Azul", valor: "blue" },
+            { nome: "Verde", valor: "green" },
+            { nome: "Vermelho", valor: "red" },
+            { nome: "Amarelo", valor: "yellow" },
+          ];
+          $scope.adicionarContato = function (contato) {
+            $scope.contatos.push(
+              angular.copy(contato)
+              //    nome: $scope.nome,
+              //    telefone: $scope.telefone,
+            );
+            delete $scope.contato;
+          };
+          $scope.classe1 = "selecionado";
+          $scope.classe2 = "negrito";
+          $scope.apagarContato = function (contatos) {
+            $scope.contatos = contatos.filter(function (contato) {
+              if (!contato.selecionado) return contato;
+            });
+          };
+          $scope.isContatoSelecionado = function (contatos) {
+            return contatos.some(function (contato) {
+              return contato.selecionado;
+            });
+            console.log(isContatoSelecionado);
+          };
+        });
+        </script>
+    </head>
+
+    <body ng-controller="listaTelefonicaCtrl">
+        <div class="jumbotron">
+            <h4 ng-bind="app"></h4>
+            <table ng-show="contatos.length > 0" class="table table-striped">
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+                    <th>Telefone</th>
+                    <th>Operadora</th>
+                    <th>Status</th>
+                </tr>
+                <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos">
+                    <!--    <tr ng-class="[classe1, classe2]" ng-repeat="contato in contatos">
+            <td> {{contato.nome}}</td> -->
+                    <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+                    <td ng-bind="contato.nome"></td>
+                    <td ng-bind="contato.telefone"></td>
+                    <td ng-bind="contato.operadora.nome"></td>
+                    <td>
+                        <div style="width: 16px !important; height: 16px; border-radius: 25px"
+                            ng-style="{'background': contato.cor}"></div>
+                    </td>
+                </tr>
+                <!--
             <tr ng-repeat="contato in contatos">
                 <td ng-repeat="(key, value) in contato">
                     {{value}}
                 </td>
                 <td ></td>
             </tr>
-        --> 
-        </table>
-        <hr/>
-        <!-- {{contato}}-->
-        <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome">
-        <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone">
+        -->
+            </table>
+            <hr />
+            <!-- {{contato}}-->
+        é valido: {{contatoForm.$valid}}
+        é invalido: {{contatoForm.$invalid}}
 
-        <select class="form-control"  ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
-            <option value="">- Selecione uma operadora -</option>
-        </select>
-        <select class="form-control"  ng-model="contato.cor" ng-options="cor.valor as cor.nome for cor in cores">
-            <option value="">- Selecione uma cor -</option>
-        </select>
+            <form action="" name="contatoForm">
+                <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome" ng-required="true"/>
+                <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone" ng-required="true"/>
+                <select class="form-control" ng-model="contato.operadora"
+                    ng-options="operadora.nome group by operadora.categoria for operadora in operadoras" ng-required="true">
+                    <option value="">- Selecione uma operadora -</option>
+                </select>
+                <select class="form-control" ng-model="contato.cor" ng-options="cor.valor as cor.nome for cor in cores" ng-required="true">
+                    <option value="">- Selecione uma cor -</option>
+                </select>
+            </form>
+            <div class="alert alert-danger">
+                Selecione ou preencha os campos vazios.
+            </div>
+            <button class="btn btn-primary btn-block" ng-disabled="contatoForm.$invalid"
+                ng-click="adicionarContato(contato)">
+                Acidionar contato
+            </button>
+            <button class="btn btn-danger btn-block" ng-if="isContatoSelecionado(contatos)"
+                ng-click="apagarContato(contatos)">
+                Apagar contato
+            </button>
+        </div>
+        <div ng-include="'footer.html'"></div>
+    </body>
 
-        <button class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone"  ng-click="adicionarContato(contato)">Acidionar contato</button>
-
-        <button class="btn btn-danger btn-block" ng-if="isContatoSelecionado(contatos)" ng-click="apagarContato(contatos)" >Apagar contato</button>
-    </div>
-</body>
-</html>
+    </html>
