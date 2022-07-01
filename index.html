@@ -24,7 +24,7 @@
         }
 
         .selecionado {
-            background-color: yellow;
+            background-color: yellow!important;
         }
         .negrito {
             font-weight: bold;
@@ -37,8 +37,7 @@
             $scope.contatos= [
                 {nome: "Pedro", telefone: "8199559765"},
                 {nome: "Ana", telefone: "8199550000"},
-                {nome: "Joao", telefone: "8199559764"},
-                {nome: "Renata", telefone: "8199577777"}
+                {nome: "Joao", telefone: "8199559764"}
             ]
             $scope.operadoras = [
                 {nome: "Oi", codigo: 14, categoria: "Celular"},
@@ -56,14 +55,26 @@
             }
             $scope.classe1 = "selecionado"
             $scope.classe2 = "negrito"
+            $scope.apagarContato = function (contatos) {
+              
+            $scope.contatos = contatos.filter(function(contato) {
+                if (!contato.selecionado) return contato
+            })            
+            }
+            $scope.isContatoSelecionado = function(contatos) {
+                return contatos.some(function(contato) {
+                    return contato.selecionado
+                })
+                console.log(isContatoSelecionado)
+            }
         })
+
     </script>
 
 </head>
 <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
         <h4 ng-bind="app"></h4>
-        {{contatos}}
         <table class="table table-striped">
             <tr>
                 <th></th>
@@ -88,7 +99,6 @@
             </tr>
         --> 
         </table>
-        {{contato}}
         <hr/>
         <!-- {{contato}}-->
         <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome">
@@ -99,6 +109,8 @@
         </select>
 
         <button class="btn btn-primary btn-block" ng-disabled="!contato.nome || !contato.telefone"  ng-click="adicionarContato(contato)">Acidionar contato</button>
+
+        <button class="btn btn-danger btn-block" ng-disabled="!isContatoSelecionado(contatos)" ng-click="apagarContato(contatos)" >Apagar contato</button>
     </div>
 </body>
 </html>
