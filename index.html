@@ -34,10 +34,10 @@
                 {nome: "Renata", telefone: "8199577777"}
             ]
             $scope.operadoras = [
-                {nome: "Oi", codigo: 14},
-                {nome: "Vivo", codigo: 15},
-                {nome: "Tim", codigo: 16},
-                {nome: "Claro", codigo: 17},
+                {nome: "Oi", codigo: 14, categoria: "Celular"},
+                {nome: "Vivo", codigo: 15, categoria: "Celular"},
+                {nome: "Tim", codigo: 16, categoria: "Fixo"},
+                {nome: "Claro", codigo: 17, categoria: "Fixo"},
             ]
             $scope.adicionarContato = function (contato) {
                 $scope.contatos.push(
@@ -81,7 +81,7 @@
         <input class="form-control" type="text" ng-model="contato.nome" placeholder="Nome">
         <input class="form-control" type="text" ng-model="contato.telefone" placeholder="Telefone">
 
-        <select class="form-control"  ng-model="contato.operadora" ng-options="operadora.nome for operadora in operadoras">
+        <select class="form-control"  ng-model="contato.operadora" ng-options="operadora.nome group by operadora.categoria for operadora in operadoras">
             <option value="">- Selecione uma operadora -</option>
         </select>
 
