@@ -35,9 +35,9 @@
             </tr>
             <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos">
                 <td><input type="checkbox" ng-model="contato.selecionado" /></td>
-                <td ng-bind="contato.nome"></td>
+                <td ng-bind="contato.nome | uppercase"></td>
                 <td ng-bind="contato.telefone"></td>
-                <td ng-bind="contato.operadora.nome"></td>
+                <td ng-bind="contato.operadora.nome | lowercase"></td>
                 <td>
                     <div class="simple-circle" ng-style="{'background': contato.cor}"></div>
                 </td>
