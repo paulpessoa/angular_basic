@@ -6,20 +6,20 @@
       $scope.app = "Lista Telefonica";
       $scope.contatos = [
         {
-          nome: "Pedro",
-          telefone: "8199559765",
+          nome: "Bruna Nallis",
+          telefone: "88888-8888",
           operadora: { nome: "Oi" },
           cor: "Blue",
         },
         {
-          nome: "Ana",
-          telefone: "8199550000",
+          nome: "Lucas Brittos",
+          telefone: "77777-7777",
           operadora: { nome: "Claro" },
           cor: "purple",
         },
         {
-          nome: "Joao",
-          telefone: "8199559764",
+          nome: "Vitor Ferronato",
+          telefone: "66666-6666",
           operadora: { nome: "Vivo" },
           cor: "green",
         },
