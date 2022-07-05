@@ -33,3 +33,8 @@
 ## Modules AngularJs:
 
 - [ ] ngMessages - ngMessage
+
+## Filters AngularJs:
+
+- [x] upperCase - lowerCase
+- [x] date

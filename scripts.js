@@ -8,18 +8,21 @@
         {
           nome: "Maria",
           telefone: "88888-8888",
+          data: "02/12/2019",
           operadora: { nome: "Oi" },
           cor: "Blue",
         },
         {
           nome: "João",
           telefone: "77777-7777",
+          data: new Date(),
           operadora: { nome: "Claro" },
           cor: "purple",
         },
         {
           nome: "Raimunda",
           telefone: "66666-6666",
+          data: "05/03/2016",
           operadora: { nome: "Vivo" },
           cor: "green",
         },
@@ -35,6 +38,10 @@
         { nome: "Verde", valor: "green" },
         { nome: "Vermelho", valor: "red" },
         { nome: "Amarelo", valor: "yellow" },
+      ];
+      $scope.colunas = [
+        { nome: "Nome", valor: "nome" },
+        { nome: "Telefone", valor: "telefone" }
       ];
       $scope.adicionarContato = function (contato) {
         $scope.contatos.push(

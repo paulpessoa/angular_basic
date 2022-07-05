@@ -5,9 +5,10 @@
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-    <!--AngularJS CDN-->
+    <!--AngularJS CDN
     <script src="http://code.angularjs.org/snapshot/angular.min.js"></script>
     <script src="http://code.angularjs.org/snapshot/angular-messages.js"></script>
+    -->
 
     <!--Angular Pastas Locais.-->
     <script src="./angular.js"></script>
@@ -25,22 +26,38 @@
 <body ng-controller="listaTelefonicaCtrl">
     <div class="jumbotron">
         <h4 ng-bind="app"></h4>
+        <form name="searchForm">
+            <select class="form-control" name="selecionacategoria" title="select" ng-model="contato.coluna"
+                ng-options="coluna.valor as coluna.nome for coluna in colunas" ng-required="true">
+                <option value="">Selecione o tipo de Pesquisa</option>
+            </select>
+            <input class="form-control" ng-model="criterioBusca" placeholder="O que você está buscando?" type="search" name="search" title="search" id="search">
+        </form>
+        <div ng-messages="searchForm.selecionacategoria.$error">
+            <div ng-message="required" class="alert alert-danger">
+                Selecione uma categoria
+            </div>
+        </div>
         <table ng-show="contatos.length > 0" class="table table-striped">
             <tr>
-                <th></th>
                 <th>Nome</th>
                 <th>Telefone</th>
+                <th>Registro</th>
                 <th>Operadora</th>
                 <th>Status</th>
+                <th></th>
+                <th></th>
+                
             </tr>
-            <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos">
-                <td><input type="checkbox" ng-model="contato.selecionado" /></td>
+            <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos | filter: {[contato.coluna]: criterioBusca}">
                 <td ng-bind="contato.nome | uppercase"></td>
                 <td ng-bind="contato.telefone"></td>
+                <td ng-bind="contato.data | date:'dd/MM/yyyy'"></td>
                 <td ng-bind="contato.operadora.nome | lowercase"></td>
                 <td>
                     <div class="simple-circle" ng-style="{'background': contato.cor}"></div>
                 </td>
+                <td><input title="checkbox" type="checkbox" ng-model="contato.selecionado" /></td>
             </tr>
         </table>
         <hr />
@@ -50,6 +67,8 @@
                 ng-required="true" ng-minlength="5" />
             <input class="form-control" name="telefone" type="text" ng-model="contato.telefone" placeholder="Telefone"
                 ng-required="true" ng-maxlength="10" ng-pattern="/^\d{4,5}-\d{4}$/" />
+            <input class="form-control" name="data" type="date" ng-model="contato.data" placeholder="Data"
+                ng-required="true" ng-minlength="1"/>
             <select class="form-control" title="select" ng-model="contato.operadora"
                 ng-options="operadora.nome group by operadora.categoria for operadora in operadoras" ng-required="true">
                 <option value="">- Selecione uma operadora -</option>
