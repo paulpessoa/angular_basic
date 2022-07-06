@@ -38,3 +38,4 @@
 
 - [x] upperCase - lowerCase
 - [x] date
+- [x] orderBy

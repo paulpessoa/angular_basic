@@ -10,21 +10,49 @@
           telefone: "88888-8888",
           data: "02/12/2019",
           operadora: { nome: "Oi" },
-          cor: "Blue",
+          cor: "blue",
         },
         {
           nome: "João",
-          telefone: "77777-7777",
+          telefone: "61461-7777",
           data: new Date(),
           operadora: { nome: "Claro" },
           cor: "purple",
         },
         {
           nome: "Raimunda",
-          telefone: "66666-6666",
+          telefone: "96568-3136",
           data: "05/03/2016",
           operadora: { nome: "Vivo" },
           cor: "green",
+        },
+        {
+          nome: "Italo",
+          telefone: "21695-5656",
+          data: "08/11/2018",
+          operadora: { nome: "Oi" },
+          cor: "blue",
+        },
+        {
+          nome: "Clarice",
+          telefone: "52315-6523",
+          data: "01/06/2022",
+          operadora: { nome: "Claro" },
+          cor: "yellow",
+        },
+        {
+          nome: "Gustavo",
+          telefone: "23564-6413",
+          data: "15/04/2019",
+          operadora: { nome: "Tim" },
+          cor: "blue",
+        },
+        {
+          nome: "Sergio",
+          telefone: "32345-6464",
+          data: "05/03/2020",
+          operadora: { nome: "Tim" },
+          cor: "red",
         },
       ];
       $scope.operadoras = [
@@ -65,6 +93,11 @@
         });
         console.log(isContatoSelecionado);
       };
+      $scope.ordenarPor = function (campo) {
+        $scope.criterioDeOrdenacao = campo
+        $scope.direcaoDaOrdenacao = !$scope.direcaoDaOrdenacao 
+      }
+
     });
 })(window.angular);
 

@@ -40,16 +40,16 @@
         </div>
         <table ng-show="contatos.length > 0" class="table table-striped">
             <tr>
-                <th>Nome</th>
-                <th>Telefone</th>
-                <th>Registro</th>
-                <th>Operadora</th>
-                <th>Status</th>
+                <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+                <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+                <th><a href="" ng-click="ordenarPor('data')">Registro</a></th>
+                <th><a href="" ng-click="ordenarPor('operadora')">Operadora</a></th>
+                <th><a href="" ng-click="ordenarPor('status')">Status</a></th>
                 <th></th>
                 <th></th>
                 
             </tr>
-            <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos | filter: {[contato.coluna]: criterioBusca}">
+            <tr ng-class="{'negrito selecionado': contato.selecionado}" ng-repeat="contato in contatos | filter: {[contato.coluna]: criterioBusca} | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao">
                 <td ng-bind="contato.nome | uppercase"></td>
                 <td ng-bind="contato.telefone"></td>
                 <td ng-bind="contato.data | date:'dd/MM/yyyy'"></td>
@@ -70,7 +70,7 @@
             <input class="form-control" name="data" type="date" ng-model="contato.data" placeholder="Data"
                 ng-required="true" ng-minlength="1"/>
             <select class="form-control" title="select" ng-model="contato.operadora"
-                ng-options="operadora.nome group by operadora.categoria for operadora in operadoras" ng-required="true">
+                ng-options="operadora.nome group by operadora.categoria for operadora in operadoras | orderBy: 'nome'" ng-required="true">
                 <option value="">- Selecione uma operadora -</option>
             </select>
             <select class="form-control" title="select" ng-model="contato.cor"
